@@ -9,7 +9,6 @@ import $ from 'jquery';
 // global.jQuery = $;
 // const bootstrap = require('bootstrap');
 import iView from 'iview'
-// import 'iview/dist/styles/iview.css'
 Vue.use(iView)
 
 import axios from 'axios'

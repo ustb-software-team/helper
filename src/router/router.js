@@ -10,8 +10,8 @@ Vue.use(VueRouter)
 const routes = [
     { path:'/',component:List },
     { path:'/List',component:List },
-    { path:'/Edit',component:Form },
-    { path:'/Build',component:Form },
+    { path:'/Form',component:Form },
+    { path:'/Build/:id',component:Form,props:true },
     { path:'/Login',component:Login }
 ]
 const router = new VueRouter({

@@ -7,10 +7,10 @@
                 <span>删除</span>
             </p>
             <div style="text-align:center">
-                <p>确定删除吗？</p>
+                <p>确定删除 {{node_del}} 吗？</p>
             </div>
             <div slot="footer">
-                <Button type="error" size="large" long :loading="modal_loading" @click="del">删除</Button>
+                <Button type="error" size="large" long :loading="modal_loading" @click="postDel">删除</Button>
             </div>
         </Modal>
     </div>
@@ -20,20 +20,29 @@
     import 'iview/dist/styles/iview.css'
     export default {
         name: "model",
+        props:['node_del'],
         data () {
             return {
                 modal2: false,
                 modal_loading: false
             }
         },
+        mounted(){
+            console.log(this.node_del);
+        },
         methods: {
-            del () {
+            postDel () {
+                let post_del = this.node_del;
+                let post_url = 'http://localhost/get_form.php';
                 this.modal_loading = true;
-                setTimeout(() => {
-                    this.modal_loading = false;
-                    this.modal2 = false;
-                    this.$Message.success('成功删除');
-                }, 2000);
+                this.axios.post(post_url,post_del)
+                    .then(response=>{
+                        if (response.status === 200){
+                            this.modal_loading = false;
+                            this.modal2 = false;
+                            this.$Message.success('成功删除');
+                        }
+                    })
             }
         }
     }

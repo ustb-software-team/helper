@@ -1,5 +1,5 @@
 <template>
-    <form class="container" method="post" v-on:submit="check">
+    <form class="container" v-on:submit="checkForm">
         <div class="row form-inline">
             <div class="col-md-5">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -24,7 +24,7 @@
     export default {
         name: "admin-login",
         methods:{
-            check:function () {
+            checkForm:function () {
                 let user = document.getElementById('user').value;
                 let password = document.getElementById('password').value;
                 if (password === ''||user === ''){
@@ -32,10 +32,6 @@
                 }
             },
             instance (type) {
-                const warningtitle = '警告';
-                const warningcontent = '<p>请输入正确的用户名或密码</p>';
-                const errortitle = '失败';
-                const errorcontent = '<p>你的用户名或密码错误</p>'
                 switch (type) {
                     // case 'info':
                     //     this.$Modal.info({
@@ -51,16 +47,16 @@
                     //     break;
                     case 'warning':
                         this.$Modal.warning({
-                            title: warningtitle,
-                            content: warningcontent
+                            title: '警告',
+                            content: '<p>请输入正确的用户名或密码</p>'
                         });
                         break;
-                    case 'error':
-                        this.$Modal.error({
-                            title: errortitle,
-                            content: errorcontent
-                        });
-                        break;
+                    // case 'error':
+                    //     this.$Modal.error({
+                    //         title: '失败',
+                    //         content:  '<p>你的用户名或密码错误</p>'
+                    //     });
+                    //     break;
                 }
             }
         },
